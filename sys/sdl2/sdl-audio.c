@@ -13,8 +13,8 @@
 
 #include <SDL2/SDL.h>
 
-#include "rc.h"
-#include "pcm.h"
+#include "../../rc.h"
+#include "../../pcm.h"
 
 
 struct pcm pcm;
