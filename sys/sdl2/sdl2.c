@@ -85,7 +85,11 @@ void vid_init()
 	else
 		die("vmode pixel format not supported, choose 16 or 32");
 
-//	flags = SDL_WINDOW_OPENGL;
+#ifdef __VSF__
+	flags = 0;
+#else
+	flags = SDL_WINDOW_OPENGL;
+#endif
 
 	if (fullscreen)
 		flags |= SDL_WINDOW_FULLSCREEN;
@@ -93,7 +97,7 @@ void vid_init()
 	if (SDL_Init(SDL_INIT_VIDEO))
 		die("SDL: Couldn't initialize SDL: %s\n", SDL_GetError());
 
-//	SDL_SetHint(SDL_HINT_RENDER_DRIVER, "opengl");
+	SDL_SetHint(SDL_HINT_RENDER_DRIVER, "opengl");
 
 	if (!(win = SDL_CreateWindow("gnuboy", SDL_WINDOWPOS_UNDEFINED,
 		SDL_WINDOWPOS_UNDEFINED, vmode[0], vmode[1], flags)))
